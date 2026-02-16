@@ -1,4 +1,4 @@
-## Hi there 👋
+## project ethics metaverse 👋
 
 <!--
 **luis656-dea/luis656-dea** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.

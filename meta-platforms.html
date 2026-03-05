@@ -1,0 +1,412 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Meta Platforms Coverage | Ethics of the Metaverse</title>
+  <meta name="description" content="A clear, well-sourced overview of how news coverage framed Meta Platforms' metaverse push, including key ethical questions." />
+
+  <style>
+    :root{
+      --bg:#0b1220;
+      --card:#121b2f;
+      --card2:#0f172a;
+      --text:#e9eefc;
+      --muted:#b8c2e6;
+      --accent:#7aa2ff;
+      --accent2:#56e6c2;
+      --border:rgba(255,255,255,.12);
+      --shadow: 0 14px 40px rgba(0,0,0,.40);
+      --max: 980px;
+      --radius: 18px;
+    }
+
+    *{ box-sizing:border-box; }
+
+    html{ scroll-behavior:smooth; }
+
+    body{
+      margin:0;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+      line-height:1.6;
+      color:var(--text);
+      background:
+        radial-gradient(900px 600px at 15% 10%, rgba(122,162,255,.25), transparent 60%),
+        radial-gradient(900px 600px at 85% 25%, rgba(86,230,194,.18), transparent 55%),
+        radial-gradient(700px 500px at 50% 90%, rgba(122,162,255,.12), transparent 65%),
+        var(--bg);
+      min-height:100vh;
+    }
+
+    a{ color:inherit; }
+    a:hover{ opacity:.92; }
+
+    /* Top bar */
+    .topbar{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+      background: rgba(11,18,32,.55);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 14px 18px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      font-weight: 800;
+      letter-spacing:.2px;
+    }
+    .logo{
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background:
+        linear-gradient(135deg, rgba(122,162,255,1), rgba(86,230,194,1));
+      box-shadow: 0 10px 26px rgba(0,0,0,.35);
+    }
+    nav{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .navlink{
+      text-decoration:none;
+      color: var(--muted);
+      font-weight: 650;
+      font-size: 14px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      transition: .2s ease;
+    }
+    .navlink:hover{
+      color: var(--text);
+      border-color: var(--border);
+      background: rgba(255,255,255,.04);
+    }
+
+    /* Hero */
+    header.hero{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 42px 18px 14px;
+    }
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      font-weight: 700;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      padding: 8px 12px;
+      border-radius: 999px;
+    }
+    .dot{
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent2);
+      box-shadow: 0 0 0 6px rgba(86,230,194,.12);
+    }
+    h1{
+      margin: 14px 0 8px;
+      font-size: clamp(28px, 4vw, 44px);
+      line-height: 1.1;
+      letter-spacing: -.5px;
+    }
+    .subhead{
+      margin: 0;
+      color: var(--muted);
+      max-width: 70ch;
+      font-size: 16px;
+    }
+
+    /* Layout */
+    main{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap: 18px;
+      align-items:start;
+    }
+    @media (max-width: 960px){
+      main{ grid-template-columns: 1fr; }
+      .topbar-inner{ align-items:flex-start; }
+    }
+
+    /* Cards */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.04), rgba(255,255,255,.02));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+    }
+    .card-inner{
+      padding: 18px;
+    }
+    .section-title{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .section-title h2{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: -.2px;
+    }
+    .pill{
+      font-size: 12px;
+      color: var(--muted);
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      white-space: nowrap;
+    }
+
+    .prose p{
+      margin: 0 0 12px;
+      color: rgba(233,238,252,.92);
+    }
+    .prose p:last-child{ margin-bottom: 0; }
+
+    .callout{
+      margin-top: 14px;
+      padding: 14px;
+      background: rgba(122,162,255,.10);
+      border: 1px solid rgba(122,162,255,.25);
+      border-radius: 14px;
+    }
+    .callout strong{
+      display:block;
+      margin-bottom: 6px;
+      letter-spacing:.1px;
+    }
+    .list{
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+    .list li{ margin: 6px 0; }
+
+    /* Sidebar */
+    .side .card{ position: sticky; top: 74px; }
+    @media (max-width: 960px){
+      .side .card{ position: static; }
+    }
+
+    .meta-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 12px;
+      padding: 10px 0;
+      border-top: 1px dashed rgba(255,255,255,.12);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta-row:first-of-type{ border-top: 0; padding-top: 0; }
+    .value{
+      color: var(--text);
+      font-weight: 700;
+      text-align:right;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      width: 100%;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(86,230,194,.28);
+      background: rgba(86,230,194,.10);
+      color: var(--text);
+      text-decoration:none;
+      font-weight: 800;
+      transition: .2s ease;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(86,230,194,.40);
+      background: rgba(86,230,194,.14);
+    }
+
+    /* Footer */
+    footer{
+      max-width: var(--max);
+      margin: 22px auto 0;
+      padding: 10px 18px 28px;
+      color: rgba(184,194,230,.85);
+      font-size: 13px;
+    }
+    .fineprint{
+      border-top: 1px solid rgba(255,255,255,.10);
+      padding-top: 14px;
+    }
+    code.inline{
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      padding: 2px 6px;
+      border-radius: 8px;
+      color: rgba(233,238,252,.95);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size: 12px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#">
+        <span class="logo" aria-hidden="true"></span>
+        <span>Ethics of the Metaverse</span>
+      </a>
+
+      <nav aria-label="Page sections">
+        <a class="navlink" href="#overview">Overview</a>
+        <a class="navlink" href="#coverage">Coverage Themes</a>
+        <a class="navlink" href="#ethics">Ethical Questions</a>
+        <a class="navlink" href="#source">Source</a>
+      </nav>
+    </div>
+  </div>
+
+  <header class="hero">
+    <div class="kicker"><span class="dot" aria-hidden="true"></span> Media Coverage Page</div>
+    <h1>Meta Platforms & the Metaverse: What the Coverage Focused On</h1>
+    <p class="subhead">
+      A clear, well-sourced overview of how major reporting framed Meta’s push toward the metaverse—highlighting
+      benefits, skepticism, and the ethical debates around privacy, power, and digital rights.
+    </p>
+  </header>
+
+  <main>
+    <!-- Main article column -->
+    <section class="card" id="overview">
+      <div class="card-inner">
+        <div class="section-title">
+          <h2>Overview</h2>
+          <span class="pill">Context + framing</span>
+        </div>
+
+        <div class="prose">
+          <p>
+            In October 2021, Meta Platforms (formerly Facebook) announced a corporate name change to “Meta,”
+            signaling a major strategic focus on building the metaverse—an interconnected set of immersive digital
+            spaces accessed through technologies like virtual reality (VR) and augmented reality (AR).
+          </p>
+          <p>
+            News coverage treated the rebrand as more than a simple name change. It was widely framed as a move to
+            reposition the company around a new vision for the future of the internet, while also drawing attention to
+            Meta’s past controversies and the challenge of building trust in a more immersive digital world.
+          </p>
+
+          <div class="callout" id="coverage">
+            <strong>What coverage emphasized</strong>
+            <ul class="list">
+              <li><b>A strategic pivot:</b> The metaverse presented as the “next phase” of online social life and work.</li>
+              <li><b>Scale and investment:</b> The company’s large spending and long timeline for metaverse development.</li>
+              <li><b>Trust and reputation:</b> Skepticism shaped by earlier privacy and safety controversies.</li>
+              <li><b>Power and governance:</b> Questions about who sets the rules in immersive platforms.</li>
+            </ul>
+          </div>
+
+          <div class="callout" id="ethics" style="margin-top:16px; background: rgba(86,230,194,.08); border-color: rgba(86,230,194,.22);">
+            <strong>Ethical questions raised by immersive platforms</strong>
+            <ul class="list">
+              <li><b>Privacy:</b> What new data is collected in VR/AR (movement, eye tracking, voice, biometrics)?</li>
+              <li><b>Surveillance:</b> How much monitoring becomes “normal” when interaction is always logged?</li>
+              <li><b>Safety and harassment:</b> How do platforms prevent harm in spaces that feel physically real?</li>
+              <li><b>Misinformation and influence:</b> How do narratives spread in immersive, persuasive environments?</li>
+              <li><b>Digital rights:</b> What users can own, control, or take with them across platforms.</li>
+              <li><b>Market power:</b> Whether a few companies can dominate identity, commerce, and rules.</li>
+            </ul>
+          </div>
+
+          <p style="margin-top:14px">
+            In short, the coverage framed the metaverse as both a technological opportunity and a governance problem:
+            a future that could expand creativity and connection, while also intensifying the risks of centralized control,
+            data extraction, and algorithmic influence.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sidebar -->
+    <aside class="side">
+      <div class="card">
+        <div class="card-inner">
+          <div class="section-title">
+            <h2>Quick Details</h2>
+            <span class="pill">For citations</span>
+          </div>
+
+          <div class="meta-row">
+            <span>Topic</span>
+            <span class="value">Meta + Metaverse</span>
+          </div>
+          <div class="meta-row">
+            <span>Key moment</span>
+            <span class="value">Rebrand to “Meta”</span>
+          </div>
+          <div class="meta-row">
+            <span>Debate focus</span>
+            <span class="value">Ethics & governance</span>
+          </div>
+          <div class="meta-row">
+            <span>Use case</span>
+            <span class="value">Class project site</span>
+          </div>
+
+          <a class="btn" id="source"
+             href="https://www.nytimes.com/2021/10/28/technology/facebook-meta-name-change.html"
+             target="_blank" rel="noopener">
+            Open the NYT Source
+            <span aria-hidden="true">↗</span>
+          </a>
+
+          <p style="margin:12px 0 0; color: var(--muted); font-size: 13px;">
+            Source: Satariano, A., & Isaac, M. (2021). “Facebook changes its corporate name to Meta.”
+            <span style="color: rgba(233,238,252,.9); font-weight: 700;">The New York Times</span>.
+          </p>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <footer>
+    <div class="fineprint">
+      <p>
+        Tip for GitHub Pages: save this file as <code class="inline">meta-coverage.html</code> and link to it from your
+        homepage. If your site uses a shared stylesheet, you can move the CSS into <code class="inline">styles.css</code>.
+      </p>
+      <p>
+        Note: Some NYT articles may require a subscription to view the full text.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>

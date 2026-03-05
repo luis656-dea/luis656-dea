@@ -1,3 +1,6 @@
+/* styles.css */
+
+/* Theme + globals */
 :root{
   --bg:#0b1220;
   --card:#121b2f;
@@ -8,9 +11,14 @@
   --border:rgba(255,255,255,.12);
   --shadow: 0 12px 34px rgba(0,0,0,.35);
   --max: 980px;
+
+  --radius: 18px;
+  --radius-btn: 12px;
 }
 
 *{ box-sizing:border-box; }
+
+html{ scroll-behavior:smooth; }
 
 body{
   margin:0;
@@ -23,12 +31,37 @@ body{
     var(--bg);
 }
 
+a{ color: inherit; }
+a:hover{ opacity:.95; }
+
 .container{
   max-width: var(--max);
   margin: 0 auto;
   padding: 0 18px;
 }
 
+/* Skip link (you already have <a class="skip" ...>) */
+.skip{
+  position:absolute;
+  left:-9999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+.skip:focus{
+  left: 18px;
+  top: 14px;
+  width:auto;
+  height:auto;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,.08);
+  border: 1px solid var(--border);
+  z-index: 999;
+}
+
+/* Header */
 .site-header{
   position:sticky;
   top:0;
@@ -55,29 +88,38 @@ body{
 }
 
 .logo{
-  width:12px; height:12px;
+  width:12px;
+  height:12px;
   border-radius:999px;
   background: linear-gradient(135deg, var(--accent), var(--accent2));
+  box-shadow: 0 0 0 6px rgba(122,162,255,.12);
 }
 
+.brand-text{
+  letter-spacing: .2px;
+}
+
+/* Nav buttons */
 .nav.buttons{
   display:flex;
   gap:10px;
   flex-wrap:wrap;
 }
 
-/* BUTTON STYLE */
+/* Buttons */
 .btn{
-  display:inline-block;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   padding: 10px 14px;
-  border-radius: 12px;
+  border-radius: var(--radius-btn);
   border: 1px solid var(--border);
   background: rgba(255,255,255,.04);
   color: var(--text);
-  font-weight: 600;
+  font-weight: 650;
   font-size: 14px;
   text-decoration:none;
-  transition: all .2s ease;
+  transition: transform .2s ease, background .2s ease, border-color .2s ease;
 }
 
 .btn:hover{
@@ -91,24 +133,92 @@ body{
   border-color: rgba(122,162,255,.45);
 }
 
+/* Hero */
+.hero{
+  padding: 34px 0 10px;
+}
+
+.hero h1{
+  margin: 0 0 8px;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -.4px;
+}
+
+.lead{
+  margin: 0 0 14px;
+  color: var(--muted);
+  max-width: 70ch;
+  font-size: 16px;
+}
+
+.buttons{
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+}
+
+/* Sections + Cards */
 .section{
-  margin-top: 26px;
+  margin-top: 22px;
 }
 
 .card{
   background: rgba(18,27,47,.88);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: var(--radius);
   box-shadow: var(--shadow);
   padding: 18px;
 }
 
 h2{
   margin:0 0 10px;
+  letter-spacing: -.2px;
 }
 
+p{
+  margin: 0 0 12px;
+}
+p:last-child{
+  margin-bottom: 0;
+}
+
+ul, ol{
+  margin: 0;
+  padding-left: 18px;
+}
+
+li{
+  margin: 6px 0;
+}
+
+/* Sources list links look nicer */
+#sources a{
+  text-decoration: none;
+  border-bottom: 1px dashed rgba(255,255,255,.22);
+}
+#sources a:hover{
+  border-bottom-color: rgba(86,230,194,.55);
+}
+
+/* Footer */
 .footer{
   margin-top: 26px;
-  padding-top: 14px;
+  padding: 18px 0 26px;
   border-top: 1px solid var(--border);
+  color: rgba(184,194,230,.85);
+  font-size: 13px;
+}
+
+/* Mobile tweaks */
+@media (max-width: 700px){
+  .header-inner{
+    align-items:flex-start;
+  }
+  .btn{
+    padding: 10px 12px;
+  }
+  .card{
+    padding: 16px;
+  }
 }

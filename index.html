@@ -1,50 +1,52 @@
+<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>The Ethics of the Metaverse Workplace</title>
+
+  <meta name="description" content="A research mini-site on metaverse workplace ethics: labor issues, biometric surveillance, and data extraction." />
+  <meta name="theme-color" content="#0b1220" />
+
   <link rel="stylesheet" href="styles.css" />
 </head>
 
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-  <header class="site-header">
+  <header class="site-header" role="banner">
     <div class="container header-inner">
-      <div class="brand">
+      <a class="brand" href="#top" aria-label="Go to top">
         <span class="logo" aria-hidden="true"></span>
         <span class="brand-text">Metaverse Workplace Ethics</span>
-      </div>
+      </a>
 
-      <!-- BUTTON NAVIGATION (opens in new tab) -->
-      <nav class="nav buttons" aria-label="Sections">
-        <a class="btn" href="index.html#overview" target="_blank" rel="noopener noreferrer">Overview</a>
-        <a class="btn" href="index.html#problem" target="_blank" rel="noopener noreferrer">Problem</a>
-        <a class="btn" href="index.html#issues" target="_blank" rel="noopener noreferrer">Key Issues</a>
-        <a class="btn" href="index.html#impact" target="_blank" rel="noopener noreferrer">Impact</a>
-        <a class="btn" href="index.html#challenges" target="_blank" rel="noopener noreferrer">Challenges</a>
-        <a class="btn primary" href="index.html#sources" target="_blank" rel="noopener noreferrer">Sources</a>
+      <!-- Better: same-page navigation (no new tabs) -->
+      <nav class="nav" aria-label="Page sections">
+        <a class="nav-link" href="#overview">Overview</a>
+        <a class="nav-link" href="#problem">Problem</a>
+        <a class="nav-link" href="#issues">Key Issues</a>
+        <a class="nav-link" href="#impact">Impact</a>
+        <a class="nav-link" href="#challenges">Challenges</a>
+        <a class="nav-link nav-link--primary" href="#sources">Sources</a>
       </nav>
     </div>
   </header>
 
-  <main id="main" class="container">
-    <section class="hero">
-      <div class="card">
+  <main id="main" class="container" role="main">
+    <section class="hero" id="top">
+      <div class="card hero-card">
+        <div class="eyebrow">Research mini-site</div>
         <h1>The Ethics of the Metaverse Workplace</h1>
         <p class="lead">
           Examining <strong>labor issues</strong>, <strong>data extraction</strong>, and <strong>privacy</strong>
-          in virtual corporate environments.
+          in immersive, virtual corporate environments.
         </p>
 
-        <div class="buttons">
-          <a class="btn primary" href="index.html#problem" target="_blank" rel="noopener noreferrer">
-            Start with the problem
-          </a>
-          <a class="btn" href="index.html#sources" target="_blank" rel="noopener noreferrer">
-            Jump to sources
-          </a>
+        <div class="button-row">
+          <a class="btn btn-primary" href="#problem">Start with the problem</a>
+          <a class="btn" href="#sources">Jump to sources</a>
         </div>
       </div>
     </section>
@@ -53,8 +55,9 @@
       <div class="card">
         <h2>Overview</h2>
         <p>
-          A <strong>metaverse workplace</strong> is a virtual work environment where employees use immersive
-          tools (VR headsets, avatars, spatial audio, 3D rooms) to collaborate and complete job tasks.
+          A <strong>metaverse workplace</strong> is a virtual work environment where employees use immersive tools
+          (VR headsets, avatars, spatial audio, and 3D rooms) to collaborate and complete job tasks. Unlike normal video calls,
+          these environments can capture far more behavioral detail—how you move, where you look, and how you interact.
         </p>
       </div>
     </section>
@@ -63,8 +66,9 @@
       <div class="card">
         <h2>What problem am I solving?</h2>
         <p>
-          Workplace ethics, worker protections, and privacy rules were built for physical offices and
-          standard digital tools — not for systems that track body movement and biometric behavior.
+          Worker protections and privacy rules were built for physical offices and standard digital tools—not for systems that can
+          continuously track body movement, voice patterns, and other sensitive signals. The ethical challenge is designing
+          immersive workplaces that support productivity <em>without</em> turning employees into data streams.
         </p>
       </div>
     </section>
@@ -72,10 +76,22 @@
     <section id="issues" class="section">
       <div class="card">
         <h2>Key Issues</h2>
-        <ul>
-          <li>Labor precarity</li>
-          <li>Biometric surveillance</li>
-          <li>Data extraction</li>
+
+        <ul class="grid-list" aria-label="Key issues list">
+          <li class="pill">
+            <h3>Labor precarity</h3>
+            <p>Contract work, moderation labor, and unclear accountability across global supply chains.</p>
+          </li>
+
+          <li class="pill">
+            <h3>Biometric surveillance</h3>
+            <p>VR/AR can enable tracking of motion, gaze, voice, and other signals tied to identity.</p>
+          </li>
+
+          <li class="pill">
+            <h3>Data extraction</h3>
+            <p>Incentives to collect more data than necessary for “optimization,” ranking, and monitoring.</p>
+          </li>
         </ul>
       </div>
     </section>
@@ -84,7 +100,9 @@
       <div class="card">
         <h2>Impact</h2>
         <p>
-          Normalizing immersive workplace surveillance could reduce worker autonomy and privacy.
+          Normalizing immersive workplace surveillance could reduce worker autonomy and privacy, and it may shift power further toward
+          employers and platform owners. If performance is judged by sensors and metrics, it can also increase pressure to “perform”
+          for the system rather than do meaningful work.
         </p>
       </div>
     </section>
@@ -93,7 +111,8 @@
       <div class="card">
         <h2>Challenges</h2>
         <p>
-          Technology evolves quickly, and laws often lag behind innovation.
+          Technology evolves quickly while laws and workplace policies lag behind. Clear standards are needed for
+          data minimization, consent, retention limits, and worker protections—especially when systems collect sensitive signals.
         </p>
       </div>
     </section>
@@ -101,25 +120,29 @@
     <section id="sources" class="section">
       <div class="card">
         <h2>Sources</h2>
-        <ol>
+
+        <ol class="sources">
           <li>
             <a href="https://onlabor.org/ready-employee-one-data-privacy-within-the-metaverse/"
                target="_blank" rel="noopener noreferrer">
-               Harvard OnLabor — Data Privacy Within the Metaverse
+              Harvard OnLabor — “Ready Employee One: Data Privacy Within the Metaverse”
             </a>
           </li>
           <li>
             <a href="https://jacobin.com/2024/02/kenya-courts-meta-content-moderation-union"
                target="_blank" rel="noopener noreferrer">
-               Jacobin — Meta and Unionization
+              Jacobin — “Kenya Courts Meta Content Moderation Union…” (Meta and labor organizing)
             </a>
           </li>
         </ol>
+
+        <p class="note">
+          Tip: Add 3–5 more sources (academic + major newsroom) to strengthen credibility.
+        </p>
       </div>
     </section>
 
     <footer class="footer">
-      <p>Built for GitHub Pages + Google Sites Embed</p>
     </footer>
   </main>
 </body>

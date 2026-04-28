@@ -4,33 +4,58 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Metaverse Ethics Project</title>
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <style>
-        body { margin: 0; font-family: sans-serif; background: #000; color: #fff; }
-        #root { min-height: 100vh; }
+        body { margin: 0; font-family: sans-serif; background: #111; color: #eee; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        #root { width: 100%; }
+        #loading { text-align: center; padding: 20px; }
+        .spinner { border: 4px solid rgba(255,255,255,0.1); border-left-color: #09f; border-radius: 50%; width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 20px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
+    <div id="loading">
+        <div class="spinner"></div>
+        <p id="status">Loading Metaverse Ethics Project...</p>
+    </div>
     <div id="root"></div>
+
     <script type="text/babel">
-        // We need to handle the 'export default' manually since Babel standalone doesn't support ES modules directly in this way
-        // We'll fetch the file, remove the export, and eval it.
         async function loadApp() {
-            const response = await fetch('metaverse-ethics.jsx');
-            let code = await response.text();
-            // Remove 'export default' to make it a regular function
-            code = code.replace(/export default function App/g, 'function App');
-            
-            // Transform and execute
-            const transformed = Babel.transform(code, { presets: ['react'] }).code;
-            eval(transformed);
-            
-            const root = ReactDOM.createRoot(document.getElementById('root'));
-            root.render(React.createElement(App));
+            const status = document.getElementById('status');
+            try {
+                status.innerText = "Fetching project files (2.1MB)...";
+                const response = await fetch('metaverse-ethics.jsx');
+                if (!response.ok) throw new Error('Failed to fetch JSX file');
+                
+                let code = await response.text();
+                status.innerText = "Compiling code...";
+                
+                // Clean up code for Babel standalone
+                code = code.replace(/import\s+.*?\s+from\s+['"].*?['"];?/g, '');
+                code = code.replace(/export\s+default\s+function\s+App/g, 'function App');
+                
+                const transformed = Babel.transform(code, { 
+                    presets: ['react']
+                }).code;
+                
+                status.innerText = "Initializing application...";
+                // Use a function wrapper to avoid global scope pollution and ensure App is defined
+                const factory = new Function('React', 'useState', 'useEffect', 'useCallback', transformed + '; return App;');
+                const App = factory(React, React.useState, React.useEffect, React.useCallback);
+                
+                document.getElementById('loading').style.display = 'none';
+                const root = ReactDOM.createRoot(document.getElementById('root'));
+                root.render(React.createElement(App));
+            } catch (err) {
+                console.error(err);
+                status.innerHTML = `<span style="color: #ff4444;">Error loading project: ${err.message}</span><br><small>Check browser console for details</small>`;
+                document.querySelector('.spinner').style.display = 'none';
+            }
         }
-        loadApp().catch(console.error);
+        loadApp();
     </script>
 </body>
 </html>

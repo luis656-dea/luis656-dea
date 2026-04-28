@@ -1,1 +1,36 @@
-<h1>Test Deployment</h1><p>If you see this, GitHub Pages is working.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metaverse Ethics Project</title>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #000; color: #fff; }
+        #root { min-height: 100vh; }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        // We need to handle the 'export default' manually since Babel standalone doesn't support ES modules directly in this way
+        // We'll fetch the file, remove the export, and eval it.
+        async function loadApp() {
+            const response = await fetch('metaverse-ethics.jsx');
+            let code = await response.text();
+            // Remove 'export default' to make it a regular function
+            code = code.replace(/export default function App/g, 'function App');
+            
+            // Transform and execute
+            const transformed = Babel.transform(code, { presets: ['react'] }).code;
+            eval(transformed);
+            
+            const root = ReactDOM.createRoot(document.getElementById('root'));
+            root.render(React.createElement(App));
+        }
+        loadApp().catch(console.error);
+    </script>
+</body>
+</html>

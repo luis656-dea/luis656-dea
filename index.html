@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ethics of the Metaverse Workplace</title>
+    <meta
+      name="description"
+      content="Interactive slideshow and document view for The Ethics of the Metaverse Workplace."
+    />
+    <script
+      crossorigin
+      src="https://unpkg.com/react@18/umd/react.production.min.js"
+    ></script>
+    <script
+      crossorigin
+      src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"
+    ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <style>
+      html, body {
+        margin: 0;
+        min-height: 100%;
+        background: #05080e;
+        color: #d4e0f0;
+        font-family: Arial, sans-serif;
+      }
+
+      body {
+        min-height: 100vh;
+      }
+
+      #root {
+        min-height: 100vh;
+      }
+
+      .boot-status,
+      .boot-error {
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 32px;
+        box-sizing: border-box;
+      }
+
+      .boot-card {
+        max-width: 680px;
+        width: 100%;
+        border: 1px solid rgba(0, 255, 180, 0.18);
+        background: rgba(8, 13, 24, 0.92);
+        box-shadow: 0 0 32px rgba(0, 255, 180, 0.08);
+        padding: 24px;
+      }
+
+      .boot-label {
+        color: #00ffb4;
+        font-size: 12px;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        margin-bottom: 10px;
+      }
+
+      .boot-title {
+        margin: 0 0 10px;
+        font-size: 28px;
+        line-height: 1.2;
+      }
+
+      .boot-copy {
+        margin: 0;
+        line-height: 1.7;
+        color: rgba(212, 224, 240, 0.8);
+      }
+
+      .boot-copy code {
+        color: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="boot-status">
+        <div class="boot-card">
+          <div class="boot-label">Loading</div>
+          <h1 class="boot-title">Opening the metaverse ethics presentation...</h1>
+          <p class="boot-copy">
+            GitHub Pages can open <code>index.html</code>, but it cannot render a raw
+            <code>.jsx</code> file by itself. This page loads your existing JSX file and
+            renders it in the browser.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (async function boot() {
+        const root = document.getElementById("root");
+
+        function showError(message) {
+          root.innerHTML =
+            '<div class="boot-error"><div class="boot-card"><div class="boot-label">Load Error</div><h1 class="boot-title">The page could not start.</h1><p class="boot-copy">' +
+            message +
+            "</p></div></div>";
+        }
+
+        try {
+          const response = await fetch("./metaverse-ethics.jsx", { cache: "no-store" });
+
+          if (!response.ok) {
+            throw new Error(
+              "GitHub Pages could not load <code>metaverse-ethics.jsx</code> (HTTP " +
+                response.status +
+                ")."
+            );
+          }
+
+          let source = await response.text();
+
+          source = source.replace(
+            /^import\s+\{\s*useState\s*,\s*useEffect\s*,\s*useCallback\s*\}\s+from\s+["']react["'];?\s*/m,
+            "const { useState, useEffect, useCallback } = React;\n"
+          );
+
+          source = source.replace(
+            /export\s+default\s+function\s+App\s*\(/,
+            "function App("
+          );
+
+          if (!source.includes("function App(")) {
+            throw new Error(
+              "The loader found <code>metaverse-ethics.jsx</code>, but could not locate the main App component."
+            );
+          }
+
+          source +=
+            '\nconst root = ReactDOM.createRoot(document.getElementById("root"));\n' +
+            'root.render(React.createElement(App));\n';
+
+          const compiled = Babel.transform(source, {
+            filename: "metaverse-ethics.jsx",
+            presets: ["react"],
+          }).code;
+
+          new Function("React", "ReactDOM", compiled)(React, ReactDOM);
+        } catch (error) {
+          console.error(error);
+          showError(
+            error && error.message
+              ? error.message
+              : "An unexpected error happened while loading the presentation."
+          );
+        }
+      })();
+    </script>
+  </body>
+</html>

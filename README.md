@@ -11,4 +11,4 @@ Static GitHub Pages website for Luis Couttolenc's creative project.
 
 ## GitHub Pages
 
-Upload everything in this folder to a GitHub repository. In GitHub Pages settings, publish from the repository root. No npm install, build step, or backend is required.
+

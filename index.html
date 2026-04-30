@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ethics of the Metaverse Workplace</title>
+    <meta
+      name="description"
+      content="Interactive slideshow, reflection, and analytical statement for Ethics of the Metaverse Workplace."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="hdr-logo">[ SYS_ACTIVE ]</div>
+      <div class="hdr-center">
+        <h1>Ethics of the Metaverse Workplace</h1>
+        <div class="sub">Luis Couttolenc | University of Hartford | April 30, 2026</div>
+      </div>
+      <div class="hdr-right">
+        <div><span class="live-dot"></span>SESSION: 2026-04-30</div>
+        <div>UIST: Technology and Society</div>
+      </div>
+    </header>
+
+    <nav class="tab-bar" aria-label="Main sections">
+      <button class="tab-btn active" type="button" data-view="slideshow">Slideshow</button>
+      <button class="tab-btn" type="button" data-view="documents">Documents</button>
+      <button class="tab-btn" type="button" data-view="downloads">Downloads</button>
+    </nav>
+
+    <main>
+      <section id="slideshow-view" class="view visible" aria-labelledby="slideshow-title">
+        <div class="slide-stage">
+          <div class="section-kicker">Interactive Presentation</div>
+          <h2 id="slideshow-title" class="section-title">Creative Project Slides</h2>
+
+          <div class="slide-card">
+            <div class="slide-img-wrap">
+              <img id="active-slide" src="./assets/slides/slide-01.png" alt="Title Slide" />
+            </div>
+            <div class="slide-info-bar">
+              <span id="active-slide-title" class="slide-name">Title Slide</span>
+              <button id="zoom-open" class="zoom-open-btn" type="button">Zoom</button>
+              <span id="slide-num" class="slide-num-badge">1 / 12</span>
+            </div>
+          </div>
+
+          <div id="thumb-strip" class="thumb-strip" aria-label="Slide thumbnails"></div>
+        </div>
+
+        <div class="slide-controls">
+          <button id="prev-slide" class="ctrl-btn" type="button">&lt; Prev</button>
+          <div class="dots-row">
+            <div id="dots" class="dots" aria-label="Slide dots"></div>
+            <div id="slide-count" class="slide-count">1 / 12</div>
+          </div>
+          <button id="next-slide" class="ctrl-btn" type="button">Next &gt;</button>
+        </div>
+      </section>
+
+      <section id="documents-view" class="view" aria-labelledby="documents-title">
+        <div class="doc-shell">
+          <div class="section-kicker">Written Components</div>
+          <h2 id="documents-title" class="section-title">Project Documents</h2>
+          <div id="doc-tabs" class="doc-tabs" aria-label="Document choices"></div>
+          <article id="doc-content" class="doc-content"></article>
+        </div>
+      </section>
+
+      <section id="downloads-view" class="view" aria-labelledby="downloads-title">
+        <div class="download-shell">
+          <div class="section-kicker">Original Files</div>
+          <h2 id="downloads-title" class="section-title">Downloads</h2>
+          <div id="download-grid" class="download-grid"></div>
+        </div>
+      </section>
+    </main>
+
+    <div id="zoom-modal" class="zoom-modal" role="dialog" aria-modal="true" aria-label="Slide zoom viewer" hidden>
+      <div class="zoom-toolbar">
+        <div id="zoom-title" class="zoom-title">Title Slide</div>
+        <div class="zoom-actions">
+          <button id="zoom-out" class="zoom-btn" type="button">-</button>
+          <span id="zoom-level" class="zoom-level">100%</span>
+          <button id="zoom-in" class="zoom-btn" type="button">+</button>
+          <button id="zoom-reset" class="zoom-btn" type="button">Reset</button>
+          <button id="zoom-close" class="zoom-btn" type="button">Close</button>
+        </div>
+      </div>
+      <div id="zoom-canvas" class="zoom-canvas">
+        <img id="zoom-img" src="./assets/slides/slide-01.png" alt="Title Slide zoomed" />
+      </div>
+    </div>
+
+    <script src="./data.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
